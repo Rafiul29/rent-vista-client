@@ -2,7 +2,7 @@ import { BASE_URL } from "./baseUrl.js";
 
 
 export const loadAdvertisements = (search) => {
-  console.log(search)
+
   document.getElementById('advertisements').innerHTML = "";
 
   fetch(`${BASE_URL}/advertisement/list/?search=${search ? search : ""}`)
