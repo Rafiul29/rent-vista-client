@@ -10,7 +10,6 @@ function loadAdvertisementsDetails() {
   fetch(`${BASE_URL}/advertisement/list/${id}/`)
     .then(res => res.json())
     .then(data =>{
-      console.log(data.title)
       if (data?.title) {
         document.getElementById("spinner").style.display = "none";
         document.getElementById("nodata").style.display = "none";
@@ -33,17 +32,35 @@ const displayAdvertisementsDetails = (advertise) => {
 
   div.innerHTML = `
         <div class="col-md-6 overflow-hidden">
-            <img class='h-75 w-100'  src='${advertise.image}'>
+            <img class='h-100 w-100 '  src='${advertise.image}'>
         </div>
         <div class="col-md-6">
           <h2 class='text-info'>${advertise.title}</h2>
-          <p>${advertise.description}</p>  
-          <p><span>Rent Category :</span>  <span class='text-info'>${advertise.category}</span></p> 
-          <p><span>Rent Amount :</span>  <span class='text-primary'>${advertise.price}৳</span></p>  
+          <div class='row'>
+            <div class='col-md-6'>
+              <p><span>Rent Category :</span>  <span class='text-info'>${advertise.category}</span></p> 
+              <p><span>Rent Amount :</span>  <span class='text-primary'>${advertise.price}৳</span></p>  
+              <p><span> Bedrooms:</span>  <span class='text-info'>${advertise.bedrooms}</span></p> 
+            </div>
+            <div class='col-md-6'>
+                <p><span> Location:</span>  <span class='text-info'>${advertise.location}</span></p> 
+                <p><span> Amenities:</span>  <span class='text-info'>${advertise.amenities}</span></p> 
+            </div>
+          </div>
+          <p>${advertise.description}</p>
+          <div class='d-flex gap-2'>
+          <div>
+            <buttton onclick="handleRequestRent()" class='btn btn-outline-primary'> Request Rent</button>
+          </div>
+          <div>
+            <buttton onclick="handleFavouriteRent()" class='btn btn-outline-primary'>Favourite Rent</button>
+          </div>
+          </div>
+          
         </div>
+        
         `
   parentEl.appendChild(div)
 }
-
 
 

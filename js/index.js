@@ -29,14 +29,16 @@ export function displayAdvertisements(advertisements) {
 
     div.innerHTML = `
      <div class="card" style="width: 16rem;">
-        <img class="card-img-top" style="height: 12rem;" src="${advertise.image}" alt="Card image cap">
+        <a href="advertise_details.html?advertiseId=${advertise.id}">
+          <img class="card-img-top" style="height: 12rem;" src="${advertise.image}" alt="Card image cap">
+        </a>
         <div class="card-body">
           <h5 class="card-title">${advertise.title.slice(0, 30)}...</h5>
           <span class="card-text bg-info p-1 rounded">${advertise.category}</span>
-          <p class="card-text text-justify">${advertise.description.slice(0, 120)}..</p>
+          <p class="card-text text-justify">${advertise.description.slice(0, 40)}...</p>
           <div class='d-flex justify-content-between'>
-          <span class='text-primary'> ${advertise.price} ৳</span>
-          <a href="advertise_details.html?advertiseId=${advertise.id}" class="d-flex justify-content-center  align-items-center bg-primary px-1 rounded "><ion-icon class='text-white' name="eye-outline"></ion-icon></a>
+          <span class=''>${advertise.bedrooms} Bedrooms</span>
+          <span class='text-primary'> ${advertise.price}৳</span>
           </div>
         </div>
       </div>
