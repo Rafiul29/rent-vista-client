@@ -23,10 +23,16 @@ fetch('navbar.html')
                         <a class="dropdown-item" href="favourite_rent.html">Favourite Rent</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="allAppointments.html">Rent Post</a>
+                        <a class="dropdown-item" href="allAppointments.html"> Post a Rent</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="rent_request.html">Rent Request</a>
+                        <a class="dropdown-item" href="my_rent_post.html"> My Rent Post </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="my_requested_rent.html">My Requested Rent</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="request_on_my_rent.html">Request on my Rent</a>
                     </li>
                     <li onclick="handlelogOut()">
                         <a class="dropdown-item">Logout</a>

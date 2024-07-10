@@ -26,7 +26,11 @@ const handleRequestRent = () => {
       requester: userId
     })
   }).then(res => res.json())
-    .then(data => console.log(data))
+    .then(data =>{
+      if(data?.id){
+        window.location.href='my_requested_rent.html'
+      }
+    })
 }
 
 
@@ -48,5 +52,9 @@ const handleFavouriteRent=()=>{
       user: userId
     })
   }).then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data?.id){
+        window.location.href='favourite_rent.html'
+      }
+    })
 }
