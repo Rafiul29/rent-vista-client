@@ -23,7 +23,7 @@ fetch('navbar.html')
                         <a class="dropdown-item" href="favourite_rent.html">Favourite Rent</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="allAppointments.html"> Post a Rent</a>
+                        <a class="dropdown-item" href="post_rent.html"> Post a Rent</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="my_rent_post.html"> My Rent Post </a>

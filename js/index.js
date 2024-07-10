@@ -27,23 +27,29 @@ export function displayAdvertisements(advertisements) {
     const advertisements = document.getElementById('advertisements')
     const div = document.createElement('div')
 
+    fetch(`${BASE_URL}/category/list/${advertise.category}/`)
+    .then(res => res.json())
+    .then(category => {
+      
     div.innerHTML = `
-     <div class="card" style="width: 16rem;">
-        <a href="advertise_details.html?advertiseId=${advertise.id}">
-          <img class="card-img-top" style="height: 12rem;" src="${advertise.image}" alt="Card image cap">
-        </a>
-        <div class="card-body">
-          <h5 class="card-title">${advertise.title.slice(0, 30)}...</h5>
-          <span class="card-text bg-info p-1 rounded">${advertise.category}</span>
-          <p class="card-text text-justify">${advertise.description.slice(0, 40)}...</p>
-          <div class='d-flex justify-content-between'>
-          <span class=''>${advertise.bedrooms} Bedrooms</span>
-          <span class='text-primary'> ${advertise.price}৳</span>
-          </div>
-        </div>
-      </div>
-    `
-    advertisements.appendChild(div)
+    <div class="card" style="width: 16rem;">
+       <a href="advertise_details.html?advertiseId=${advertise.id}">
+         <img class="card-img-top" style="height: 12rem;" src="${advertise.image}" alt="Card image cap">
+       </a>
+       <div class="card-body">
+         <h5 class="card-title">${advertise.title.slice(0, 30)}...</h5>
+         <span class="card-text bg-info p-1 rounded">${category.name}</span>
+         <p class="card-text text-justify">${advertise.description.slice(0, 40)}...</p>
+         <div class='d-flex justify-content-between'>
+         <span class=''>${advertise.bedrooms} Bedrooms</span>
+         <span class='text-primary'> ${advertise.price}৳</span>
+         </div>
+       </div>
+     </div>
+   `
+   advertisements.appendChild(div)
+    })
+
   })
 }
 
