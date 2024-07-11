@@ -15,7 +15,7 @@ const handleRequestRent = () => {
     return
   }
 
-  fetch(`http://127.0.0.1:8000/advertisement/rent_request/`, {
+  fetch(`https://rent-vista.onrender.com/advertisement/rent_request/`, {
     method: "POST",
     headers: { 
       "content-type": "application/json",
@@ -41,7 +41,7 @@ const handleFavouriteRent=()=>{
     window.location.href = 'login.html'
     return
   }
-  fetch(`http://127.0.0.1:8000/advertisement/favourite/`, {
+  fetch(`https://rent-vista.onrender.com/advertisement/favourite/`, {
     method: "POST",
     headers: { 
       "content-type": "application/json",

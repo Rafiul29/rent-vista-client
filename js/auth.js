@@ -1,4 +1,4 @@
-const BASE_URL='http://127.0.0.1:8000'
+const BASE_URL='https://rent-vista.onrender.com'
 
 const handleRegistration = (event) => {
   event.preventDefault()
@@ -96,5 +96,11 @@ const handlelogOut=()=>{
       localStorage.removeItem('userId')
       window.location.href='index.html'
     }
-  }).catch(error=>console.log("Logout Error",error))
+  }).catch(error=>{
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('userId')
+    window.location.href='index.html'
+    console.log("Logout Error",error)
+  }
+  )
 }
