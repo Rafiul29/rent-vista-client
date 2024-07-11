@@ -69,9 +69,9 @@ color: rgba(0, 126, 133, 1);
 
 
 footer{
-  background: linear-gradient(rgba(28, 168, 199, 1),
-  rgba(67, 159, 165, 1),
-  rgba(76, 125, 140, 1));
+  background: linear-gradient(rgb(28, 45, 199),
+  rgb(25, 35, 170),
+  rgb(61, 50, 158));
 }
 
 

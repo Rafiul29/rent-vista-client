@@ -1,5 +1,8 @@
 import { BASE_URL } from "./baseUrl.js";
 
+const userId = localStorage.getItem('userId');
+const token = localStorage.getItem('authToken');
+
 const getParams = () => {
   const param = new URLSearchParams(window.location.search).get("advertiseId");
   return param
@@ -64,7 +67,93 @@ const displayAdvertisementsDetails = (advertise) => {
     `
 parentEl.appendChild(div)
   })
-  
 }
+
+
+// show for the specific advertisement review
+const loadReviews = () => {
+  const param = getParams()
+  fetch(`${BASE_URL}/advertisement/reviews/?advertisement_id=${param}`)
+    .then(res => res.json())
+    .then(data =>{
+      if(data.length==0){
+        document.getElementById('review_container').innerHTML='no review here'
+      }else{
+      displayAdvertiseReviews(data)
+      }
+    })
+}
+
+const displayAdvertiseReviews = (reviews) => {
+  reviews.forEach(review => {
+    const parentEl = document.getElementById('reviews')
+    const div = document.createElement('div')
+    div.classList.add('card', 'text-center')
+    div.style.width = '14rem'
+    // fetch user name
+    fetch(`${BASE_URL}/users/${review.reviewer}/`)
+    .then(res=>res.json())
+    .then(user=>{
+      if(user){
+        div.innerHTML = `
+        <div class="img p-3">
+            <img style="width: 100px; height: 100px; background-color: rgba(212, 210, 227, 1);"
+             class="rounded-circle  object-fit-cover" src="./Images/user.png">
+          </div>
+         <div class="card-body">
+              <h5 class="card-title">${user.first_name} ${user.last_name}</h5>
+              <p>${review.comment.slice(0,50)}</p>
+              <p class="rating">${review.rating}</p>
+          </div>
+       `
+         parentEl.appendChild(div)
+      }
+      
+    })
+
+  });
+
+}
+
+loadReviews()
+
+
+
+
+// add new reviews
+const reviewForm=document.getElementById('review-form')
+
+reviewForm.addEventListener('submit',(event)=>{
+  event.preventDefault()
+  const id = getParams()
+
+  if(!userId && !token){
+    window.location.href='login.html'
+    return
+  }
+
+  const form=new FormData(reviewForm)
+  const formData={
+    comment:form.get('comment'),
+    rating:document.getElementById('rating').value,
+    advertisement:id,
+    reviewer: userId
+  }
+  fetch(`${BASE_URL}/advertisement/reviews/`,{
+    method:"POST",
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': `Token ${token}`,
+    },
+    body:JSON.stringify(formData)
+  }).then(res=>res.json())
+  .then(data=>{
+    if(data){
+    window.location.href=`advertise_details.html?advertiseId=${id}`
+    }
+  })
+})
+
+
 
 

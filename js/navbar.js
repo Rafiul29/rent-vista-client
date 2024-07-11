@@ -17,7 +17,7 @@ fetch('navbar.html')
                 </button>
                 <ul class="dropdown-menu dropdown-menu-white" aria-labelledby="dropdownMenuButton2">
                     <li>
-                        <a class="dropdown-item" href="userDetails.html">Profile</a>
+                        <a class="dropdown-item" href="user_profile.html">Profile</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="favourite_rent.html">Favourite Rent</a>
