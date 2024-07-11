@@ -82,7 +82,6 @@ const loadallReviews = () => {
   fetch(`${BASE_URL}/advertisement/reviews/`)
     .then(res => res.json())
     .then(data =>{
-      console.log(data)
       if(data.length==0){
         document.getElementById('reviews').innerHTML='no review here'
       }else{
