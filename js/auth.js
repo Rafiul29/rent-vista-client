@@ -52,12 +52,6 @@ const handleRegistration = (event) => {
 }
 
 
-
-
-
-
-
-
 const handleLogin=(event)=>{
   event.preventDefault()
   const form=document.getElementById('login-form')
