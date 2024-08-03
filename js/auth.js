@@ -1,4 +1,6 @@
-const BASE_URL='https://rent-vista.onrender.com'
+const  BASE_URL='https://rent-vista-7tlr.onrender.com'
+// const  BASE_URL='http://127.0.0.1:8000'
+
 
 const handleRegistration = (event) => {
   event.preventDefault()
@@ -52,6 +54,7 @@ const handleRegistration = (event) => {
 }
 
 
+
 const handleLogin=(event)=>{
   event.preventDefault()
   const form=document.getElementById('login-form')
@@ -81,25 +84,24 @@ const handleLogin=(event)=>{
 
 
 const handlelogOut=()=>{
- const token= localStorage.getItem('authToken')
-
+  const token= localStorage.getItem('authToken')
   fetch(`${BASE_URL}/api/auth/logout/`, {
     headers: {
-       "content-type": "application/json",
-       'Authorization':`Token ${token}`
-       },
-  }).then(res=>{
-    console.log(res.json())
-    if(res.ok){
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('userId')
-      window.location.href='index.html'
+      "content-type": "application/json",
+      'Authorization': `Token ${token}`
+    },
+  }).then(res => {
+    console.log(res); // Log the entire response object
+    if (res.ok) {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userId');
+      window.location.href = 'index.html';
     }
-  }).catch(error=>{
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('userId')
-    window.location.href='index.html'
-    console.log("Logout Error",error)
+  }).catch(error =>{
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
+    window.location.href = 'index.html';
+    console.log("Logout Error", error)
   }
-  )
+  );
 }
