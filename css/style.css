@@ -10,20 +10,55 @@
   outline: none;
 }
 
-body{       
-   font-family: "Open Sans", sans-serif;
+
+/* custom scrool bar */
+::-webkit-scrollbar {
+  width: 8px;
 }
-.nav-container {
+
+::-webkit-scrollbar-track {
+  background-color: rgb(55, 56, 61);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color:#0d6efd;
+  height: 8%;
+  border-radius: 10px;
+}
+
+body,html{       
+   font-family: "Open Sans", sans-serif;
+   overflow-x: hidden;
+}
+/* .nav-container {
   width: 95%;
   margin:  0 auto;
 
+} */
+
+.hero-padding{
+  padding-top: 7rem;
 }
 
-.menu{
-  position: relative;
-  cursor: pointer;
+.main-padding{
+  padding-top: 5rem;
 }
-.menu::after{
+
+
+
+.navbar-nav{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8rem; 
+}
+
+
+.nav-menu-item{
+  position: relative;
+  cursor: pointer ;
+}
+.nav-menu-item::after{
   content: "";
   position: absolute;
   left: 0;
@@ -37,42 +72,89 @@ body{
   width: 100%;
 }
 
-.banner{
-  padding: 5rem 5rem;
-}
-
-.banner-container{
-  height: 45vh;
-}
-
 /* filter rent category  */
 .dropdown-item:hover{
   cursor: pointer;
   background: #3333;
 }
 
+.category-name{
+  background-color: #d3d7db;
+  transition: 0.5s ease-in-out;
+}
+.category_item{
+  margin-bottom: 0.5rem !important;
+  background-color: #e9ecef;
+  transition: 0.5s ease-in-out;
+}
 
+.category_item:hover{
+  background-color: #ecf0f0;
+  color: rgb(63, 62, 62);
+}
 
+.m-neg {
+  margin-top: -0.5rem !important;
+}
 
 .card-title{
   color: rgba(0, 126, 133, 1);
+  height: 3rem;
+  overflow: hidden;
 }
-
+.rent-description{
+  height: 2.8rem;
+  overflow: hidden;
+}
 .nodata{
   display: none;
 }
 
-.reviews-heading  h3{
-  font-size: 2.5rem;
-color: rgba(0, 126, 133, 1);
+.registration-container,.login-container ,.contact-container,.profile-container,.rent-post-container,.contact-container,.deposit-container,.deposit-form{
+  width: 55%;
+  margin:0 auto;
+}
+
+/* error  */
+#error{
+  background-color: #dc3545;
+  color: #ffff;
+}
+
+.hover-scale {
+  transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.hover-scale:hover {
+  transform: scale(1.1); /* Scale the image to 110% */
 }
 
 
-/* footer{
-  background: linear-gradient(rgb(28, 45, 199),
-  rgb(25, 35, 170),
-  rgb(61, 50, 158));
-} */
+/* reponsive advertisement borde4r */
+@media (min-width: 768px) { 
+  .border-md {
+    border: 1px solid #dee2e6; 
+  }
+}
 
+@media (max-width: 991px) { 
+  .navbar-nav{
+    padding-top: 1rem;
+    display: flex !important;
+    align-items: start;
+    justify-content: start;
+    gap: 0.5rem; 
+  }
+  .registration-container,.login-container,.profile-container,.rent-post-container,.contact-container,.deposit-container,.deposit-form{
+    width: 100%;
+    margin: 0 auto;
+  }
 
-
+  .card-title{
+    color: rgba(0, 126, 133, 1);
+    height: 1.5rem;
+  }
+  .rent-description{
+  height: 1.5rem;
+  }
+}

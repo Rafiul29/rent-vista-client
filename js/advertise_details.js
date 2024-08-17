@@ -32,39 +32,45 @@ const displayAdvertisementsDetails = (advertise) => {
 
   const parentEl = document.getElementById('advertise-details')
   const div = document.createElement('div')
-  div.classList.add('row')
+  div.classList.add('row','g-0','g-lg-3')
   fetch(`${BASE_URL}/category/list/${advertise.category}/`)
     .then(res => res.json())
     .then(category => {
       div.innerHTML = `
-    <div class="col-md-6 overflow-hidden ">
-        <img class='h-100 w-100 object-fit-cover'  src='${advertise.image}' alt='${advertise.title}'>
+    <div class="col-md-6 overflow-hidden">
+        <img class='h-100 w-100 object-fit-cover' src='${advertise.image}' alt='${advertise.title}'>
     </div>
-    <div class="col-md-6">
-      <h2 class='text-info'>${advertise.title}</h2>
-      <div class='row'>
-        <div class='col-md-6'>
-          <p><span>Rent Category :</span>  <span class='text-info'>${category.name}</span></p> 
-          <p><span>Rent Amount :</span>  <span class='text-primary'>${advertise.price}৳</span></p>  
-          <p><span> Bedrooms:</span>  <span class='text-info'>${advertise.bedrooms}</span></p> 
+    <div class="col-md-6 p-3 d-flex flex-column justify-content-center gap-2">
+      <div class='p-lg-3 p-0'>
+       <h2 class=" text-uppercase text-info">${advertise.title}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p><span>Rent Category:</span> <span class="text-info">${category.name}</span></p>
+                <p><span>Rent Amount:</span> <span class="text-primary">${advertise.price}৳</span></p>
+                <p><span>Bedrooms:</span> <span class="text-info">${advertise.bedrooms}</span></p>
+            </div>
+            <div class="col-md-6">
+                <p><span>Location:</span> <span class="text-info">${advertise.location}</span></p>
+                <p><span>Amenities:</span> <span class="text-info">${advertise.amenities}</span></p>
+            </div>
         </div>
-        <div class='col-md-6'>
-            <p><span> Location:</span>  <span class='text-info'>${advertise.location}</span></p> 
-            <p><span> Amenities:</span>  <span class='text-info'>${advertise.amenities}</span></p> 
+        <p class=''>${advertise.description}</p>
+        <div class="d-flex gap-2">
+            <div>
+                ${advertise.request_accepted ? ` <buttton class='btn btn-success'>Rent Booked Already</button>` : `
+                    <buttton onclick="handleRequestRent()" class='btn btn-outline-primary'>Rent Request</button>`
+                        }
+            </div>
+            <div>
+                <buttton onclick="handleFavouriteRent()"
+                    class='btn btn-outline-primary d-flex justify-content-center align-items-center gap-1'>
+                    <span>Favourite Rent</span>
+                    <ion-icon name="heart-outline"></ion-icon></button>
+            </div>
         </div>
       </div>
-      <p>${advertise.description}</p>
-      <div class='d-flex gap-2'>
-          <div>
-          ${advertise.request_accepted ? ` <buttton  class='btn btn-success'>Rent Booked Already</button>` : ` <buttton onclick="handleRequestRent()"  class='btn btn-outline-primary'>Rent Request</button>`
-        }
-          </div>
-          <div>
-          <buttton onclick="handleFavouriteRent()" class='btn btn-outline-primary'>Favourite Rent</button>
-         </div>
-      </div>
     </div>
-    
+
     `
       parentEl.appendChild(div)
     })
@@ -77,9 +83,10 @@ const loadReviews = () => {
   fetch(`${BASE_URL}/advertisement/reviews/?advertisement_id=${param}`)
     .then(res => res.json())
     .then(data => {
-      if (data.length == 0) {
-        document.getElementById('review-container').innerHTML = 'no reviews here'
+      if (data?.length == 0) {
+        document.getElementById('reviews-section').style.display = 'none'
       } else {
+        document.getElementById('reviews-section').style.display = 'block'
         displayAdvertiseReviews(data)
       }
     })
@@ -88,33 +95,30 @@ const loadReviews = () => {
 const displayAdvertiseReviews = (reviews) => {
   reviews.forEach(review => {
     const parentEl = document.getElementById('reviews-cart-container')
-    const article = document.createElement('article')
-    article.classList.add('box', 'mb-3', 'shadow-lg', 'p-2', 'border', 'border-secondary', 'rounded')
+    const div = document.createElement('div')
+    div.classList.add('col-md-6', 'col-lg-3', 'col-md-4', 'mb-4')
     const date = new Date(review.created_at);
-    console.log(date)
     // fetch user name
     fetch(`${BASE_URL}/users/${review.reviewer}/`)
       .then(res => res.json())
       .then(user => {
         if (user) {
-          article.innerHTML = `
-          <div class="icontext w-100">
-              <img src="./Images/user.png"   style="width: 50px; height: 50px; background-color: rgba(212, 210, 227, 1);"class="img-xs icon rounded-circle">
-                <div class="text">
-                  <span class="date text-muted float-md-right">${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}</span>
-                      <h6 class="mb-1">${user.first_name} ${user.last_name}</h6>
-                      </div>
-                           </div> 
-                     <div class="mt-2">
-                            <p>
-                            ${review.comment}
-                           </p>
-                           <p>
-                            ${review.rating}
-                           </p>
-                     </div>
+          div.innerHTML = `
+                <article class="card p-3 h-100">
+                    <div class="icontext d-flex gap-3 align-items-center">
+                        <img src="./Images/user.png" class="img-xs icon rounded-circle" style="width: 75px; height: 75px;">
+                        <h6 class="text-uppercase fw-bold">${user.first_name} ${user.last_name}</h6>
+                    </div>
+                    <p class="mt-3">
+                      ${review.comment}
+                    </p>
+                    <p class="d-flex align-items-center justify-content-between">
+                          ${review.rating}
+                          <span class="date text-muted float-md-right">${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}</span>
+                    </p>
+                </article>
        `
-          parentEl.appendChild(article)
+          parentEl.appendChild(div)
         }
       })
   });
@@ -122,11 +126,17 @@ const displayAdvertiseReviews = (reviews) => {
 
 loadReviews()
 
-
-
-
 // add new reviews
 const reviewForm = document.getElementById('review-form')
+const reviewsSection = document.getElementById('review-section')
+document.getElementById("error").style.display = "none";
+
+// if (!userId && !token) {
+//   reviewsSection.style.display='none'
+// }else{
+//   reviewsSection.style.display='block'
+// }
+
 
 reviewForm.addEventListener('submit', (event) => {
   event.preventDefault()
@@ -136,6 +146,7 @@ reviewForm.addEventListener('submit', (event) => {
     window.location.href = 'login.html'
     return
   }
+
 
   const form = new FormData(reviewForm)
   const formData = {
@@ -153,8 +164,13 @@ reviewForm.addEventListener('submit', (event) => {
     body: JSON.stringify(formData)
   }).then(res => res.json())
     .then(data => {
-      if (data) {
+
+      if (data?.id) {
         window.location.href = `advertise_details.html?advertiseId=${id}`
+      }
+      if (data?.detail) {
+        document.getElementById("error").style.display = "inline-block";
+        document.getElementById("error").innerText = data.detail;
       }
     })
 })

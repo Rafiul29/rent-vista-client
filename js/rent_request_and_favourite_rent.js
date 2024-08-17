@@ -1,5 +1,7 @@
-const userId = localStorage.getItem('userId')
-const token = localStorage.getItem('authToken')
+const userId = localStorage.getItem('userId');
+const token = localStorage.getItem('authToken');
+
+
 
 const getParams = () => {
   const param = new URLSearchParams(window.location.search).get("advertiseId");
@@ -27,28 +29,33 @@ const handleRequestRent = () => {
   })
     .then((res) => res.json())
     .then((data) => {
-        const isRequest = data?.filter((req=>req.advertisement==getParams() && req.requester))
+      const isRequest = data?.filter((req => req.advertisement == getParams() && req.requester))
 
-        if (isRequest.length==0) {
-          fetch(`${BASE_URL}/advertisement/rent_request/`, {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              'Authorization': `Token ${token}`
-            },
-            body: JSON.stringify({
-              advertisement: param,
-              requester: userId
-            })
-          }).then(res => res.json())
-            .then(data => {
-              if (data?.id) {
-                window.location.href = 'my_requested_rent.html'
-              }
-            })
-        } else {
-          alert("Already Send Rent Request")
-        }
+      if (isRequest.length == 0) {
+        fetch(`${BASE_URL}/advertisement/rent_request/`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            'Authorization': `Token ${token}`
+          },
+          body: JSON.stringify({
+            advertisement: param,
+            requester: userId
+          })
+        }).then(res => res.json())
+          .then(data => {
+            console.log(data)
+            if (data?.id) {
+              window.location.href = 'my_requested_rent.html'
+            }
+            if(data?.error){
+              alert(`${data.error}!.Please deposit account balance`)
+               window.location.href = 'deposit_balance.html'
+            }
+          })
+      } else {
+        alert("Already Send Rent Request")
+      }
     });
 
 }

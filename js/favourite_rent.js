@@ -3,6 +3,12 @@ import { BASE_URL } from './baseUrl.js';
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('authToken');
 
+// checking auth
+if (!token && !userId) {
+  location.href = 'login.html'
+
+}
+
 const loadFavouriteRent = () => {
   fetch(`${BASE_URL}/advertisement/favourite/?user_id=${userId}`, {
     headers: {
@@ -13,7 +19,15 @@ const loadFavouriteRent = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.length === 0) {
-        document.getElementById('favourite_rent_table').innerHTML = 'Favourite rent not found';
+        document.getElementById('favourite_rent_table').innerHTML = ` 
+            <div class="text-center">
+             <div>
+              <img class="h-25 w-25 object-fit-cover" style='width:120px;height:120px' src='./Images/not_favouite.png' alt='not favourite image' />
+             </div>
+               <a href='all_advertisement.html' class='text-decoration-none btn btn-primary'>Please Continue</a>
+            </div>
+
+        `
       } else {
         displayFavoriteRent(data);
       }
@@ -23,7 +37,7 @@ const loadFavouriteRent = () => {
 function displayFavoriteRent(favRents) {
   const tableBody = document.getElementById('table-body');
   tableBody.innerHTML = '';
-  favRents.forEach((fav, i) => {
+  favRents?.forEach((fav, i) => {
     const date = new Date(fav.created_at);
     const tr = document.createElement('tr');
     let title = {}
@@ -34,7 +48,7 @@ function displayFavoriteRent(favRents) {
           <th scope="row">${i + 1}</th>
           <td>${data.title}</td>
           <td>${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}</td>
-          <td class='text-center h4 d-flex gap-1'>
+          <td class='text-center h4 d-flex gap-3'>
            <a href="advertise_details.html?advertiseId=${fav.advertisement}">
            <ion-icon class='text-success' name="eye-outline"></ion-icon>
              </a>

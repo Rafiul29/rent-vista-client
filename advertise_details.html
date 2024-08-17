@@ -21,48 +21,39 @@
 
 <body>
 
-
     <header>
         <!-- navbar start  -->
         <div id="navbar"></div>
     </header>
 
-    <div id="spinner" class="spinner hidden text-center">
-        <img style="width: 150px; height: 150px;" src="./Images/loading.png" alt="">
-    </div>
-
-    <main id="body">
-       
+    <main class="main-padding">
         <!-- advertisements  details sections -->
-        <section class="py-5 mt-5" >
-            <div class="container advertisements-container border overflow-hidden">
-                <div class="advertise-details" id="advertise-details">
-                    <!-- advertisement details  -->
-
+        <section class="py-5">
+            <div class="container advertisements-container overflow-hidden">
+                <div class="advertise-details card  overflow-hidden" id="advertise-details">
+                    <!-- Spinner and No Data Images -->
+                    <div id="spinner" class="spinner hidden text-center py-4">
+                        <img src="./Images/loading.png" alt="" style="width: 100px; height: 100px;">
+                    </div>
                     <div id="nodata" class="nodata">
                         <img src="./Images/nodata.png" alt="nodata">
                     </div>
-                   
+                    <!-- Advertisement Details -->
+
                 </div>
-
-            </div>
             </div>
         </section>
 
 
-        <section>
-            <div class="row container">
-            </div>
-        </section>
-
-        <!--post rent review -->
-        <section class="py-5">
-            <div class="container">
-                <h3 class="text-center">Please review</h3>
+        <!-- rent review -->
+        <section class="py-5" id="review-section">
+            <div class="container" id="review-container">
+                <h3 class="text-center">Please Review</h3>
                 <form id="review-form">
+                    <span id="error" class="rounded p-1 mb-2"></span>
                     <div class="form-group">
                         <label for="comment">Comment</label>
-                        <textarea class="form-control" name="comment" id="comment" placeholder="enter your comment"
+                        <textarea class="form-control" name="comment" id="comment" placeholder="Enter your comment"
                             rows="3" required></textarea>
                     </div>
                     <div class="form-group">
@@ -80,24 +71,22 @@
             </div>
         </section>
 
-        <!--show all reviews -->
-        <section class="py-5 " >
-            <div class="container" id="review-container">
-                <div class="row">
-                    <div class="col-md-12">
 
-                        <header class="section-heading">
-                            <h3>Users Reviews </h3>
-                        </header>
-                        <div class="d-flex flex-column gap-2" id="reviews-cart-container">
-                           <!-- show review -->
-                        </div>      
-                    </div> 
-                </div> 
+
+
+        <!--show all reviews -->
+        <section class="py-5" id="reviews-section" style="display: block;">
+            <div class="container">
+                <header class="section-heading mb-4">
+                    <h3>Users Reviews </h3>
+                </header>
+                <div class="row" id="reviews-cart-container">
+                    <!-- Review Card -->
+                </div>
             </div>
         </section>
-
     </main>
+
 
     <!-- footer -->
     <div id="footer"></div>
@@ -116,7 +105,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
         defer></script>
-
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -3,6 +3,12 @@ import { BASE_URL } from './baseUrl.js';
 const userId = localStorage.getItem('userId');
 const token = localStorage.getItem('authToken');
 
+// checking auth
+if(!token && !userId){
+  location.href='login.html'
+}
+
+
 const loadRequestRent = () => {
   fetch(`${BASE_URL}/advertisement/rent_request/?requester_id=${userId}`, {
     headers: {
@@ -13,7 +19,13 @@ const loadRequestRent = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.length === 0) {
-        document.getElementById('rent_request_table').innerHTML = 'rent request  not found';
+        document.getElementById('rent_request_table').innerHTML =  `
+        <div class='text-center'>
+              <a href="all_advertisement.html">
+                <img class="h-25 w-25" src="./Images/request-rent.jpg" alt="">
+              </a>
+              </div>
+        `;
       } else {
         displayRequestRent(data);
       }
@@ -38,7 +50,7 @@ function displayRequestRent(rent_requests) {
            <td class='text-center '>${data.price}</td>
            <td class='text-center '>${rent.is_accepted? `<span class='text-success'>Success</span>` : `<span class='text-danger'>Pending</span>` }</td>
           <td>${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}</td>
-          <td class='text-center h4 d-flex gap-1'>
+          <td class='text-center h4 d-flex gap-3'>
             <a href="advertise_details.html?advertiseId=${rent.advertisement}">
            <ion-icon class='text-success' name="eye-outline"></ion-icon>
             </a>

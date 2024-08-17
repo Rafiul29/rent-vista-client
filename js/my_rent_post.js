@@ -1,6 +1,12 @@
 
-const userId = localStorage.getItem('userId');
-const token = localStorage.getItem('authToken');
+const token=localStorage.getItem('authToken')
+const userId=localStorage.getItem('userId')
+
+// checking auth
+if(!token && !userId){
+  location.href='login.html'
+  
+}
 
 const loadAllRentPost = () => {
   fetch(`${BASE_URL}/advertisement/list/?owner_id=${userId}`, {
@@ -12,7 +18,14 @@ const loadAllRentPost = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.length === 0) {
-        document.getElementById('my_rent_post_table').innerHTML = 'my rent post not found';
+        document.getElementById('my_rent_post_table').innerHTML = `
+          <div class='text-center mt-2'>
+           <div class="overflow-hidden text-center" id="nodata">
+                            <img class="h-25 w-25 object-fit-cover" style='width:100px;height:100px' src="./Images/no-data-found.jpg" alt="not data found image">
+                        </div>  
+             <a href='post_rent.html' class='text-decoration-none btn btn-primary'>Please Post Rent</a> 
+          </div>
+        `
       } else {
 
         displayAllRentPost(data);

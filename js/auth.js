@@ -1,8 +1,10 @@
-const  BASE_URL='https://rent-vista-7tlr.onrender.com'
+const BASE_URL = 'https://rent-vista-7tlr.onrender.com'
 // const  BASE_URL='http://127.0.0.1:8000'
 
+document.getElementById("error").style.display='none'
 
 const handleRegistration = (event) => {
+  document.getElementById("error").style.display='inline-block'
   event.preventDefault()
   const form = document.getElementById('registration-form')
   const formData = new FormData(form)
@@ -14,7 +16,7 @@ const handleRegistration = (event) => {
     email: formData.get('email'),
     password: formData.get('password'),
     confirm_password: formData.get('confirm_password'),
-    role:'user'
+    role: 'user'
   }
 
   if (registrationData.password === registrationData.confirm_password) {
@@ -30,18 +32,18 @@ const handleRegistration = (event) => {
         body: JSON.stringify(registrationData),
       })
         .then((res) => res.json())
-        .then((data) =>{
-          console.log(data.username)
-          if(data?.error){
-            document.getElementById("error").innerText =data.error;
-          }else if(data?.username){
-            document.getElementById("error").innerText =data.username[0];
+        .then((data) => {
+          console.log(data)
+          if (data?.error) {
+            document.getElementById("error").innerText = data.error;
+          } else if (data?.username) {
+            document.getElementById("error").innerText = data.username[0];
           }
-          else{
+          else {
             alert(`Registration Successful ${data}`)
-            window.location.href='login.html'
+            window.location.href = 'login.html'
           }
-          
+
         });
     } else {
       document.getElementById("error").innerText =
@@ -55,9 +57,9 @@ const handleRegistration = (event) => {
 
 
 
-const handleLogin=(event)=>{
+const handleLogin = (event) => {
   event.preventDefault()
-  const form=document.getElementById('login-form')
+  const form = document.getElementById('login-form')
   const formData = new FormData(form)
 
   const loginData = {
@@ -70,38 +72,42 @@ const handleLogin=(event)=>{
     body: JSON.stringify(loginData),
   })
     .then((res) => res.json())
-    .then((data) =>{
-      if(data?.error){
-      document.getElementById("error").innerText =data.error
-      }else{
-        localStorage.setItem("authToken",data.token)
-        localStorage.setItem('userId',data.user_id)
-        window.location.href='index.html'
+    .then((data) => {
+      if (data?.error) {
+        document.getElementById("error").style.display = "inline-block";
+        document.getElementById("error").innerText = data.error
+      } else {
+        localStorage.setItem("authToken", data.token)
+        localStorage.setItem('userId', data.user_id)
+        window.location.href = 'index.html'
       }
     })
-    .catch(error=>console.log(error))
+    .catch(error => console.log(error))
 }
 
 
-const handlelogOut=()=>{
-  const token= localStorage.getItem('authToken')
+function handlelogOut() {
+  const token = localStorage.getItem('authToken')
   fetch(`${BASE_URL}/api/auth/logout/`, {
     headers: {
       "content-type": "application/json",
       'Authorization': `Token ${token}`
     },
   }).then(res => {
-    console.log(res); // Log the entire response object
+    console.log(res); 
     if (res.ok) {
       localStorage.removeItem('authToken');
       localStorage.removeItem('userId');
       window.location.href = 'index.html';
+    }{
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('userId');
+      window.location.href = 'index.html';
     }
-  }).catch(error =>{
+  }).catch(error => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     window.location.href = 'index.html';
     console.log("Logout Error", error)
-  }
-  );
+  });
 }

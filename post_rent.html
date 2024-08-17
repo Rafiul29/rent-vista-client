@@ -20,13 +20,15 @@
     <div id="navbar"></div>
   </header>
 
-  <section class="py-5 ">
-    <div class="registration-container container">
+ <main class="main-padding">
+  <section class="py-5">
+    <div class="rent-post-container container-sm">
       <div class="row">
         <h2 class="text-center">Post a new Advertisement</h2>
         <form onsubmit="handleRentPost(event)" enctype="multipart/form-data" id="advertisement-form" 
           class="d-flex flex-column gap-3 form-row">
-          <p id="error" class="text-danger bg-info  rounded"></p>
+          <span id="error" class="rounded p-1"></span>
+           
           <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name='title' placeholder="Enter title" required>
@@ -78,6 +80,7 @@
       </div>
     </div>
   </section>
+ </main>
 
 
   <script src="./js/auth.js"></script>
@@ -89,6 +92,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous"
     defer></script>
-</body>
 
+</body>
 </html>
