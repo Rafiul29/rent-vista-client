@@ -7,11 +7,11 @@ fetch('navbar.html')
         const token = localStorage.getItem('authToken')
         const userId = localStorage.getItem('userId')
         const loadUser = () => {
-            fetch(`https://rent-vista-7tlr.onrender.com/users/${userId}/`)
+            fetch(`https://rent-vista.onrender.com/users/${userId}/`)
                 .then(res => res.json())
                 .then(user => {
                     if (user && userId) {
-                        fetch(`${BASE_URL}/user-bank-accounts/?user_id=${userId}`)
+                        fetch(`https://rent-vista.onrender.com/user-bank-accounts/?user_id=${userId}`)
                             .then(res => res.json())
                             .then(account => {
                                 if (user.role == 'admin' && token) {
