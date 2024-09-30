@@ -12,7 +12,7 @@ const handleDeposit = (event) => {
   // account_no = formData.get('account_no')
   balance = formData.get('balance')
   console.log(balance)
-  fetch(`https://rent-vista.onrender.com/user-bank-accounts/deposit/?user_id=${userId}`,{
+  fetch(`https://rent-vista.vercel.app/user-bank-accounts/deposit/?user_id=${userId}`,{
     method: "POST",
     headers: {
        'Content-Type': 'application/json',      //'Authorization': `Token ${token}`,

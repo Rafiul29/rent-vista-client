@@ -1,4 +1,4 @@
-const BASE_URL = 'https://rent-vista.onrender.com/'
+const BASE_URL = 'https://rent-vista.vercel.app'
 // const  BASE_URL='http://127.0.0.1:8000'
 
 document.getElementById("error").style.display='none'
