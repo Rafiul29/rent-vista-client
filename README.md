@@ -44,6 +44,6 @@ RentVista is a web application that allows users to manage house rental advertis
 1. Clone the repository:
  ```sh
    git clone https://github.com/Rafiul29/rent-vista-client.git
-   cd rentvista-frontend
+   cd rent-vista-client 
 ```
 2. Open index.html in your browser to view the application.
