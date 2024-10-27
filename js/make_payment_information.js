@@ -11,17 +11,25 @@ const getParams = () => {
 };
 
 const loadData = () => {
+  const rentDetails=document.getElementById('rent-details');
+
   const id = getParams();
   fetch(`${BASE_URL}/advertisement/list/${id}/`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      rentDetails.innerHTML=`
+      <p class="card-text">${data.title}</p>
+      <p class="card-text">Location: ${data.location}</p>
+      <p class="card-text">Bedrooms: ${data.bedrooms}</p>
+      <p class="card-text " >Rent Amount: <span id="rent_price" class="text-primary">${data.price}</span> ৳</p>
+      `
     });
 };
 
 const handleMakePayment = (event) => {
   event.preventDefault();
   const form = document.getElementById("payment-information-form");
+  const price =document.getElementById('rent_price').innerHTML
   const formData = new FormData(form);
 
   const makePaymentData = {
@@ -39,19 +47,20 @@ const handleMakePayment = (event) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      total_amount: 100.26,
+      total_amount: Number(price),
       currency: "BDT",
       tran_id: "12345",
-      success_url: "https://rent-vista-client-eta.vercel.app/index.html",
+      success_url: "https://rent-vista-client-eta.vercel.app/",
       fail_url: "your fail url",
       cancel_url: "your cancel url",
-     ...makePaymentData
+      ...makePaymentData,
     }),
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.url) {
         // Redirect to payment gateway
+        console.log("data",data)
         window.location.href = data.url;
       } else {
         console.error("Payment initiation failed:", data.error);

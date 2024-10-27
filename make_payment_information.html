@@ -23,58 +23,73 @@
     <section class="py-5">
       <div class="d-flex justify-content-center align-items-center" style="height: 75vh;">
         <div class="row align-items-center g-3 p-3">
-            <h2 class="text-center">Make Payment</h2>
+             
             <form onsubmit="handleMakePayment(event)" id="payment-information-form" class="d-flex flex-column gap-3">
-              <div class="row p-sm-5 p-lg-0">
-                <div class="col-md-6 col-sm-12 ">
-              <span id="error" class="rounded p-1 text-danger" role="alert"></span>
-              <div class="form-group mt-2">
-                <label for="cus_name">Name</label>
-                <input type="text" class="form-control" id="cus_name" name='cus_name' placeholder="Enter your  name"
-                  required aria-label="User Name">
-              </div>
-              <div class="form-group mt-3">
-                <label for="cus_email">Email</label>
-                <input type="email" class="form-control" id="cus_email" name="cus_email"
-                  placeholder="Enter your  email address" required aria-label="Email Address">
-              </div>
-            <div class="row mt-3">
-                <div class="form-group col-md-6">
-                  <label for="cus_phone">Phone Number</label>
-                  <input type="text" class="form-control" id="cus_phone" name="cus_phone"
-                    placeholder="Your Phone number" required aria-label="Your Phone number">
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="cus_add1">Address</label>
-                  <input type="text" class="form-control" id="cus_add1" name="cus_add1"
-                    placeholder="Address" required aria-label="Address">
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="form-group col-md-6">
-                  <label for="cus_city">City</label>
-                  <input type="text" class="form-control" id="cus_city" name="cus_city"
-                    placeholder="City" required aria-label="City">
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="cus_country">Country</label>
-                  <input type="text" class="form-control" id="cus_country" name="cus_country"
-                    placeholder="Country" required aria-label="Country">
-                </div>
-              </div>
-
+              <div class="row g-3">
+                <div class="col-md-6 col-sm-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Payment Information</h5>
+                      <div class="form-group mt-2">
+                        <label for="cus_name">Name</label>
+                        <input type="text" class="form-control" id="cus_name" name='cus_name' placeholder="Enter your  name"
+                          required aria-label="User Name">
+                      </div>
+                      <div class="form-group mt-md-3 mt-1">
+                        <label for="cus_email">Email</label>
+                        <input type="email" class="form-control" id="cus_email" name="cus_email"
+                          placeholder="Enter your  email address" required aria-label="Email Address">
+                      </div>
+                    <div class="row mt-md-3 mt-1">
+                        <div class="form-group col-md-6">
+                          <label for="cus_phone">Phone Number</label>
+                          <input type="text" class="form-control" id="cus_phone" name="cus_phone"
+                            placeholder="Your Phone number" required aria-label="Your Phone number">
+                        </div>
+        
+                        <div class="form-group col-md-6 mt-1 mt-md-0">
+                          <label for="cus_add1">Address</label>
+                          <input type="text" class="form-control" id="cus_add1" name="cus_add1"
+                            placeholder="Address" required aria-label="Address">
+                        </div>
+                      </div>
+                      <div class="row mt-md-3 mt-1">
+                        <div class="form-group col-md-6">
+                          <label for="cus_city">City</label>
+                          <input type="text" class="form-control" id="cus_city" name="cus_city"
+                            placeholder="City" required aria-label="City">
+                        </div>
+        
+                        <div class="form-group col-md-6 mt-1 mt-md-0">
+                          <label for="cus_country">Country</label>
+                          <input type="text" class="form-control" id="cus_country" name="cus_country"
+                            placeholder="Country" required aria-label="Country">
+                        </div>
+                      </div>
+        
+                    </div>
+                  </div>
+              
+                 
+              
+              
             </div>
           
-              <div class="col-md-6 col-sm-12 mt-4">
-                  <div class="d-flex flex-column gap-2">
-                    <button type="submit" class="btn btn-primary">Payment</button>
+              <div class="col-md-6 col-sm-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Payment Summary</h5>
+                   <div class="rent-details mb-3" id="rent-details">
+                    <!-- information -->
+                   </div>
+                    <button type="submit" class="w-100 btn btn-primary">Pay</button>
                   </div>
                 </div>
-              </div>
             
-
+          
+            
+                </div>
+              </div>
             </form>
           </div>
         </div>
