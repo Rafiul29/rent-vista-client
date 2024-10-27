@@ -50,7 +50,7 @@ const handleMakePayment = (event) => {
       total_amount: Number(price),
       currency: "BDT",
       tran_id: "12345",
-      success_url: "https://rent-vista-client-eta.vercel.app/",
+      success_url: "https://rent-vista-client-eta.vercel.app/success.html",
       fail_url: "your fail url",
       cancel_url: "your cancel url",
       ...makePaymentData,
@@ -65,6 +65,7 @@ const handleMakePayment = (event) => {
       } else {
         console.error("Payment initiation failed:", data.error);
       }
+      console.log("qdq")
     })
     .catch((error) => {
       console.error("Error:", error);
