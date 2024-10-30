@@ -43,7 +43,7 @@ const handleMakePayment = (event) => {
     cus_country: formData.get("cus_country"),
   };
   // https://rent-vista.vercel.app/payment/create_payment/
-  fetch("https://rent-vista.vercel.app/payment/create_payment/payment/create_payment/", {
+  fetch("https://rent-vista.vercel.app/payment/create_payment/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
