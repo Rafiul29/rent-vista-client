@@ -13,21 +13,23 @@ const getParams = () => {
 const loadData = () => {
   const rentDetails=document.getElementById('rent-details');
 
-  const id = getParams();
-  fetch(`${BASE_URL}/advertisement/list/${id}/`)
+  const advertisement = getParams();
+
+  fetch(`${BASE_URL}/advertisement/list/${advertisement}/`)
     .then((res) => res.json())
     .then((data) => {
       rentDetails.innerHTML=`
-      <p class="card-text">${data.title}</p>
+      <p class="card-text ">${data.title}</p>
       <p class="card-text">Location: ${data.location}</p>
       <p class="card-text">Bedrooms: ${data.bedrooms}</p>
-      <p class="card-text " >Rent Amount: <span id="rent_price" class="text-primary">${data.price}</span> ৳</p>
+      <p class="card-text " >Amount: <span id="rent_price" class="text-primary">${data.price}</span> ৳</p>
       `
     });
 };
 
 const handleMakePayment = (event) => {
   event.preventDefault();
+  const advertisement = getParams();
   const form = document.getElementById("payment-information-form");
   const price =document.getElementById('rent_price').innerHTML
   const formData = new FormData(form);
@@ -40,19 +42,16 @@ const handleMakePayment = (event) => {
     cus_city: formData.get("cus_city"),
     cus_country: formData.get("cus_country"),
   };
-
-  fetch("https://rent-vista.vercel.app/payment/create_payment/", {
+  // https://rent-vista.vercel.app/payment/create_payment/
+  fetch("https://rent-vista.vercel.app/payment/create_payment/payment/create_payment/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
       total_amount: Number(price),
-      currency: "BDT",
-      tran_id: "12345",
-      success_url: "https://rent-vista-client-eta.vercel.app/success.html",
-      fail_url: "your fail url",
-      cancel_url: "your cancel url",
+      advertisement:advertisement,
+      user:userId,
       ...makePaymentData,
     }),
   })
@@ -60,12 +59,10 @@ const handleMakePayment = (event) => {
     .then((data) => {
       if (data.url) {
         // Redirect to payment gateway
-        console.log("data",data)
         window.location.href = data.url;
       } else {
         console.error("Payment initiation failed:", data.error);
       }
-      console.log("qdq")
     })
     .catch((error) => {
       console.error("Error:", error);

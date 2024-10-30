@@ -35,10 +35,7 @@ fetch('navbar.html')
                         <li class="nav-item">
                                <a class="text-decoration-none text-black" href="contact-us.html">Contact Us</a>
                         </li>
-                          <li class="nav-item">
-                               <span>Balance</span>
-                               (<span class='text-primary'>${account[0].balance}</span>৳)
-                        </li>
+                         
                         <!-- dropdown -->
                         <li class="nav-item dropdown border  rounded px-2">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -149,3 +146,9 @@ fetch('navbar.html')
         }
         loadUser()
     })
+
+
+//     <li class="nav-item">
+//     <span>Balance</span>
+//     (<span class='text-primary'>${account[0].balance}</span>৳)
+// </li>
