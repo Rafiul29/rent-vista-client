@@ -147,8 +147,3 @@ fetch('navbar.html')
         loadUser()
     })
 
-
-//     <li class="nav-item">
-//     <span>Balance</span>
-//     (<span class='text-primary'>${account[0].balance}</span>৳)
-// </li>
