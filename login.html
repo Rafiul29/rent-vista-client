@@ -45,33 +45,61 @@
                 
                 <div class="d-flex flex-column gap-2 mt-3">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <span class="">Don't have an acccount? <a class="" href="/registration.html">signup
-                      now</a></span>
+                  <span class="">Don't have an acccount? <a class="" href="/registration.html">signup now</a></span>
+
+                  <a onclick="handleCredential()" href="#" class="text-danger text-decoration-underline  cursor-pointer "  data-bs-toggle="modal" data-bs-target="#exampleModal">Login Credentials</a>
+                  
+                  <!-- Button trigger modal -->
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Login Credentials</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="p-2">
+                            <div class="border-bottom pb-2 mb-2">
+                              <h2 class="h6 fw-semibold">Admin Credentials</h2>
+                              <p class="mb-1">
+                                <span>User Name: </span>
+                                <span class="text-warning">rafi</span>
+                              </p>
+                              <p>
+                                <span>Password: </span>
+                                <span class="text-warning">123</span>
+                              </p>
+                            </div>
+                          
+                            <div class="pt-2">
+                              <h2 class="h6 fw-semibold">Customer Credentials</h2>
+                              <p class="mb-1">
+                                <span>User Name: </span>
+                                <span class="text-warning">rafiul29</span>
+                              </p>
+                              <p>
+                                <span>Password: </span>
+                                <span class="text-warning">Rafi@#12</span>
+                              </p>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </form>
           </div>
-          <!-- <div class="col-md-6 col-sm-12">
-            <h2 class="text-center">Please Login</h2>
-            <form onsubmit="handleLogin(event)" id="login-form" class="d-flex flex-column gap-3 bg-danger form-row">
-              <span id="error" class="rounded p-1"></span>
-              <div class="form-group">
-                <label for="username">User Name</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your user name"
-                  required>
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password"
-                  placeholder="Enter your password" required>
-              </div>
-              <div class="d-flex flex-column gap-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <span class="">Don't have an acccount? <a class="" href="/registration.html">signup
-                    now</a></span>
-              </div>
-            </form>
-          </div> -->
           <div class="col-md-6 d-none d-md-block">
             <div class="row ">
               <img class="w-100 h-100" src="./Images/login.png" alt="login png">
@@ -82,12 +110,20 @@
   </main>
 
   <script>
+
+    const handleCredential =()=>{
+
+
+    }
     const token = localStorage.getItem('authToken')
     const userId = localStorage.getItem('userId')
     // checking auth
     if (token && userId) {
       location.href = '/index.html'
     }
+
+
+
   </script>
 
   <script src="./js/navbar.js"></script>
